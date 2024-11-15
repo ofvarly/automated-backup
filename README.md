@@ -216,6 +216,7 @@ eder. Sırasıyla:
 - Ayın günü
 - Ay
 - Haftanın günü
+
 şeklindedir. Eğer asteriskler yerine herhangi bir sayı yazılmazsa (ilk
 satırda olduğu gibi) script her dakikada çalışır. İkinci satırda yazan “*/5”
 ifadesi de scriptin her 5 dakikada bir çalışacağını ifade eder.
