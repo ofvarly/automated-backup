@@ -146,7 +146,6 @@ remote olarak yedeklenmesi için bir script yazılır.
 Öncelikle incremental backup için `nano backup_script.sh`
 komutu ile bir script dosyası oluşturulur ve düzenleme moduna girilir.
 
-Şekil 21. Backup Scriptlerinin Yazılması
 **backup-script.sh** scriptinin içinde **full_backup** ve
 **incremental_backup** olmak üzere 2 adet fonksiyon var. Bu
 fonksiyonlardan **full_backup** olan adından da anlaşılacağı üzere bütün
