@@ -10,14 +10,16 @@ SSH’ın kurulumu için güncelleme yapıldıktan sonra `sudo apt
 install openssh-server` komutu ile OpenSSH’ın kurulumu
 yapılır.
 
-![SSH Kontrolü (İnaktif)](https://github.com/user-attachments/assets/fac2b752-2b55-49ad-bf46-32f11755adc8)
+![SSH Kontrolü (İnaktif)](https://github.com/user-attachments/assets/605bec77-381c-4f1f-b4f5-36855507546a)
+
 
 SSH’ın kurulumu yapıldıktan sonra “sudo systemctl status
 ssh” komutu ile SSH’ın aktiflik durumu kontrol edilir. Eğer
 **ssh.service** başlığının altında **Active** kısmı **inactive (dead)** ise SSH
 aktif değildir. Aktifleştirilmesi gerekir.
 
-![SSH Başlatma ve SSH Kontrolü (Aktif)](https://github.com/user-attachments/assets/f9c89ee9-6b8f-477f-ba44-b926a7a62e97)
+![SSH Başlatma ve SSH Kontrolü (Aktif)](https://github.com/user-attachments/assets/cdc7db7b-6b49-40df-9241-fd393a182743)
+
 
 Kurulumu yapılan SSH’ı aktifleştirmek için `sudo systemctl
 start ssh` komutu kullanılır. Bu komutla SSH aktifleşmiş olur.
@@ -31,7 +33,8 @@ Bu başlık altında anlatılan güvenlik duvarına SSH 22 portunun
 eklenmesi hem Host hem de Server olarak kullanılan iki bilgisayarda da
 yapılmalıdır.
 
-![Güvenlik Duvarı Kontrolü](https://github.com/user-attachments/assets/6657a1f0-226f-4eda-9044-bd17f9005b54)
+![Güvenlik Duvarı Kontrolü](https://github.com/user-attachments/assets/132db32a-e32b-4861-bb13-8d38393e0f6e)
+
 
 Öncelikle güvenlik duvarının durumu kontrol edilmelidir. Bunun için
 `sudo ufw status` komutu kullanılır. Bu komut UFW
@@ -40,12 +43,14 @@ etmeye yarar. Bu komudun çıktısı **Status: inactive** ise UFW aktif
 değildir. Aktifleştirilmesi gerekir ve SSH portunun (22) güvenlik
 duvarına kural olarak eklenip izin verilmesi gerekmektedir.
 
-![Güvenlik Duvarının Aktifleştirilmesi](https://github.com/user-attachments/assets/6b41aae5-99e6-46d8-a4f9-6b4f81fca127)
+![Güvenlik Duvarının Aktifleştirilmesi](https://github.com/user-attachments/assets/14760feb-d5be-4936-9a0b-e94ac3f93e6a)
+
 
 `sudo ufw enable` komutu ile güvenlik duvarı aktifleştirildi.
 Bu aşamadan sonra geriye SSH portunun kural olarak eklenmesi kaldı.
 
-![Güvenlik Duvarına SSH Portunun Eklenmesi](https://github.com/user-attachments/assets/d441e90e-0f9a-4e90-8f50-e127a7837e78)
+![Güvenlik Duvarına SSH Portunun Eklenmesi](https://github.com/user-attachments/assets/f8029d3c-b9f4-4342-b829-975dda98768c)
+
 
 `sudo ufw allow ssh` komutu ile güvenlik duvarına SSH’ın
 kullanmış olduğu 22 portu kural olarak eklendi. Artık güvenlik duvarı 22
@@ -62,7 +67,7 @@ SSH key oluşturmak için:
 
 - `ssh-keygen -t rsa`
 
-![SSH Anahtarlarının Oluşturulması](https://github.com/user-attachments/assets/80805c1e-6991-46c7-bbc0-dca6f64af6ee)
+![SSH Anahtarlarının Oluşturulması](https://github.com/user-attachments/assets/79a04cbd-6e05-4b8f-89e9-edb981470360)
 
 
 `ssh-keygen -t rsa` komutu ile RSA algoritmasıyla
@@ -75,14 +80,16 @@ basılıp geçilebilir. En son aşamada key için bir **fingerprint** ve
 **randomart image** da oluşturulduktan sonra anahtar oluşturma kısmı
 tamamlanır.
 
-![**.ssh** Klasörünün Oluşumu](https://github.com/user-attachments/assets/9d2fcac6-ce08-4f49-9712-7e42b0b5a9c6)
+![**.ssh** Klasörünün Oluşumu](https://github.com/user-attachments/assets/45942dab-f161-4a9d-b5e8-816f29f375de)
+
 
 Anahtar çifti oluşturulduktan sonra `ls -al` komutu ile detaylı
 olarak bulunan dizindeki dosya ve klasörler görüntülendiğinde **.ssh**
 isimli bir klasör olduğu görülür. Bu klasör az önce RSA algoritması ile
 oluşturulan anahtar çiftinin bulunduğu klasördür.
 
-![**.ssh** Klasöründeki Anahtarların Oluşumu](https://github.com/user-attachments/assets/3d080ff3-d18e-4847-8449-d86871554731)
+![**.ssh** Klasöründeki Anahtarların Oluşumu](https://github.com/user-attachments/assets/f9382766-55a5-4161-995f-9866f22ffd8a)
+
 
 Klasörün içine girilip yeniden `ls -al` komutu ile
 görüntülendiğinde görülecektir ki **id_rsa** ve **id_rsa.pub** adında iki
@@ -106,7 +113,8 @@ da anahtarlar oluşturulurken oluşturulan fingerprint ile cevap verilebilir.
 Sonrasında da kullanıcıdan hedef cihazın şifresi istenir. Bu işlem
 yapılırken hedef cihazın şifresinin de bilinmesi gerekir.
 
-![Public Key’in Hedef Cihaza Kopyalanması](https://github.com/user-attachments/assets/7b8b841d-d545-463f-8fbd-77835e26e7c8)
+![Public Key’in Hedef Cihaza Kopyalanması](https://github.com/user-attachments/assets/b9630128-3b63-4e83-94ea-a33338c8d722)
+
 
 İşlem gerçekleştikten sonra hedef cihazda **.ssh** klasörü içinde
 bulunan **authorized_keys** dosyasının içine bakıldığında Host cihazdaki
@@ -174,9 +182,11 @@ dosyaların kopyalanmasını sağlar, böylece disk alanından ve
 işlemci kaynaklarından daha verimli bir şekilde yararlanır.
 
 Full Backup komutu çalıştıktan sonra ekrana gelen çıktı:
-![Full Backup Scriptinin Çalıştırılması](https://github.com/user-attachments/assets/3bb493d1-cece-40b6-b56f-c1bf08400529)
+![Full Backup Scriptinin Çalıştırılması](https://github.com/user-attachments/assets/a2deaa8f-fa2b-4a5b-bd1a-79209b8bd888)
 
-![Incremental Backup Scriptinin Çalıştırılması](https://github.com/user-attachments/assets/34cdf760-fdf3-481b-9089-c4d491e28149)
+
+![Incremental Backup Scriptinin Çalıştırılması](https://github.com/user-attachments/assets/3d236edd-27b6-4cde-ad71-7d3c06796ad1)
+
 
 Bu script **full** ve **inc** olmak üzere iki farklı parametre ile anlık
 olarak çalıştırılabilir. Bu işlem zaman ayarlı olarak yapılmak istenirse
@@ -188,7 +198,8 @@ Yedekleme işleminin cron ile zaman ayarlı olarak gerçekleşmesi için
 crontab üzerinde düzenlemeler yapılmalıdır. crontab’e erişmek için
 `crontab -e` komutu kullanılır.
 
-![Scriptlerin crontab’e Eklenmesi ve Zamana Bağlı Çalıştırılması](https://github.com/user-attachments/assets/067c8a4f-9b39-4528-a29d-22b50413f68b)
+![Scriptlerin crontab’e Eklenmesi ve Zamana Bağlı Çalıştırılması](https://github.com/user-attachments/assets/51238c92-1602-4d9c-b43f-1d18be3cc169)
+
 
 Zamana bağlı olarak çalıştırılması istenen komutlar bu tablonun sonuna
 eklenir. Burada çalıştırılacak olan script az önce oluşturulan
@@ -262,7 +273,7 @@ yerleştirilerek yerine yazıldı. Böylelikle o andaki zaman çekilmiş oldu.
 Bu komutla da eğer backup gerçekleştiyse komutun sonundaki `>>
 $LOGFILE` ifadesiyle bu metin log dosyasına eklenmiş oldu.
 
-![Komutlar çalıştıktan sonraki durumların log dosyasında gösterilmesi.](https://github.com/user-attachments/assets/a5f35877-4056-4534-9420-49965415d580)
+![Komutlar çalıştıktan sonraki durumların log dosyasında gösterilmesi.](https://github.com/user-attachments/assets/3f89a9c6-a378-4ecd-bf92-2220840aa543)
 
 Burada komut çalıştıktan sonra **log.txt** dosyasına aktarılmış örnek
 bir çıktı verilmiştir.
