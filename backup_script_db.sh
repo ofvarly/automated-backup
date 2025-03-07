@@ -18,8 +18,8 @@ full_backup_db(){
         fi
 
         REMOTE_DIR="~/full-backup-server-db/"
-        ssh -i ~/.ssh/id_rsa talha4@192.168.75.168 "mkdir -p ${REMOTE_DIR}"
-        rsync -avzP --delete -e "ssh -i ~/.ssh/id_rsa" $DUMP_FILE talha4@192.168.75.168:${REMOTE_DIR}full_${TIMESTAMP}
+        ssh -i ~/.ssh/id_rsa <hedef_username>@<hedef_ip> "mkdir -p ${REMOTE_DIR}"
+        rsync -avzP --delete -e "ssh -i ~/.ssh/id_rsa" $DUMP_FILE <hedef_username>@<hedef_ip>:${REMOTE_DIR}full_${TIMESTAMP}
         if [ $? -eq 0 ]; then
             echo "$TIMESTAMP: Full DB backup başarıyla tamamlandı." >> $LOGFILE
         else
@@ -40,10 +40,10 @@ incremental_backup_db(){
             return 1
         fi
 
-        LATEST_FULL_BACKUP_DB=$(ssh -i ~/.ssh/id_rsa talha4@192.168.75.168 'ls -t $HOME/full-backup-server-db/full_* | head -1')
+        LATEST_FULL_BACKUP_DB=$(ssh -i ~/.ssh/id_rsa <hedef_username>@<hedef_ip> 'ls -t $HOME/full-backup-server-db/full_* | head -1')
         REMOTE_DIR="~/inc-backup-server-db/"
-        ssh -i ~/.ssh/id_rsa talha4@192.168.75.168 "mkdir -p ${REMOTE_DIR}"
-        rsync -avzP --link-dest="${LATEST_FULL_BACKUP}" -e "ssh -i ~/.ssh/id_rsa" $DUMP_FILE talha4@192.168.75.168:${REMOTE_DIR}
+        ssh -i ~/.ssh/id_rsa <hedef_username>@<hedef_ip> "mkdir -p ${REMOTE_DIR}"
+        rsync -avzP --link-dest="${LATEST_FULL_BACKUP}" -e "ssh -i ~/.ssh/id_rsa" $DUMP_FILE <hedef_username>@<hedef_ip>:${REMOTE_DIR}
         if [ $? -eq 0 ]; then
             echo "$TIMESTAMP: Incremental DB backup başarıyla tamamlandı." >> $LOGFILE
         else
